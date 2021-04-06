@@ -18,7 +18,7 @@ int	main()
 	char	*line;
 	char	**texpath;
 	char	**map;
-	t_rgb	floor;
+	t_rgb	ground;
 	t_rgb	sky;
 	int		fstdmsz;
 	int		w;
@@ -54,10 +54,10 @@ int	main()
 		else if (ft_check_line(line) == 3)
 		{
 			if (line[0] == 'F')
-				ft_rgb_fill(&floor, line);
+				ft_rgb_fill(&ground, line);
 			else
 				ft_rgb_fill(&sky, line);
-			printf ("floor rgb = %u,%u,%u \n", floor.r, floor.g, floor.b);
+			printf ("ground rgb = %u,%u,%u \n", ground.r, ground.g, ground.b);
 			printf ("sky rgb = %u,%u,%u \n", sky.r, sky.g, sky.b);
 		}
 		else if (ft_check_line(line) == 4)
