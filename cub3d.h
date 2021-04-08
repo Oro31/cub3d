@@ -6,7 +6,7 @@
 /*   By: rvalton <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 07:56:50 by rvalton           #+#    #+#             */
-/*   Updated: 2021/04/06 10:36:52 by rvalton          ###   ########.fr       */
+/*   Updated: 2021/04/08 11:10:05 by rvalton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "gnl/get_next_line.h"
+
+typedef	struct	s_data
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		ll;
+	int		e;
+}
 
 typedef	struct	s_sprt
 {
@@ -56,6 +65,11 @@ int		ft_parse_tex(char *line, char **tpath);
 void	ft_parse_rsl(char *line, int *width, int *height);
 
 void	ft_rgb_fill(t_rgb *rgb, char *line);
+
+int		ft_rgbtocolor(uint8_t r, uint8_t g, uint8_t b);
+t_rgb	*ft_colortorgb(int color);
+
+void	ft_mymlx_pixelput(t_data *data, int skycolor, int groundcolor);
 
 int		ft_istex_line(char *line);
 int		ft_isrgb_line(char *line);
