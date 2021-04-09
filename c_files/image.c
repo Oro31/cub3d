@@ -28,8 +28,8 @@ void	ft_mymlx_pixelput(t_all *vars, t_data *data)
 		{
 			dst = data->addr + (y * data->ll + x * 
 					(data->bpp / 8));
-			px = x;
-			py = y;
+			px = (x / 20) % 64;
+			py = (y / 20) % 64;
 			*(unsigned int*)dst = 
 				ft_get_xpm_pixel(&vars->spr.data[3], 
 						px, py);
@@ -43,6 +43,6 @@ int	ft_get_xpm_pixel(t_data *data, int y, int x)
 {
 	int	color;
 
-	color = (int)data->addr + (y * data->ll + x * (data->bpp / 8));
+	color = *((int*)data->addr + (y * 2 + x * 128));
 	return (color);
 }
