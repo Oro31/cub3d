@@ -12,26 +12,37 @@
 
 #include "cub3d.h"
 
-void	ft_mymlxpixelput(t_data *data, int skycolor, int groundcolor)
+void	ft_mymlx_pixelput(t_all *vars, t_data *data)
 {
 	char	*dst;
-	int		x;
-	int		y;
+	int	x;
+	int	y;
+	int	px;
+	int	py;
 
 	x = 0;
-	y = 0;
-	while (x < 640)
+	while (x < vars->rsl.w)
 	{
 		y = 0;
-		while (y < 480)
+		while (y < vars->rsl.h)
 		{
-			dst = img->addr + (y * data->ll + x * (data->bpp / 8));
-			if (x + y < (640 + 480) / 2)
-				*(unsigned int*)dst = skycolor;
-			else
-				*(unsigned int*)dst = groundcolor;
+			dst = data->addr + (y * data->ll + x * 
+					(data->bpp / 8));
+			px = (x / 20) % 64;
+			py = (y / 20) % 64;
+			*(unsigned int*)dst = 
+				ft_get_xpm_pixel(&vars->spr.data[3], 
+						px, py);
 			y++;
 		}
 		x++;
 	}
+}
+
+int	ft_get_xpm_pixel(t_data *data, int y, int x)
+{
+	int	color;
+
+	color = *((int*)data->addr + (y * 2 + x * 128));
+	return (color);
 }
